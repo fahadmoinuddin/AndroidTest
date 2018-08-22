@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="item"
+            type="test.android.repository.apimodels.Property"/>
+    </data>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="5dp"
+        app:contentPaddingTop="10dp"
+        app:contentPaddingBottom="10dp"
+        android:layout_margin="8dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_area"
+                android:text="@{item.area}"
+                tools:text="Sydney"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-smallcaps"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/property_price"/>
+
+            <TextView
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_price"
+                android:text='@{item.price.concat(" ").concat(item.currency)}'
+                tools:text="Sydney"
+                android:textSize="18sp"
+                android:textColor="@color/md_black_1000"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/property_area"
+                app:layout_constraintBottom_toTopOf="@+id/property_image"/>
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:background="@color/md_black_1000"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_default_image"
+                android:id="@+id/property_image"
+                app:imageUrl="@{item.getPropertyImage()}"
+                app:layout_constraintTop_toBottomOf="@+id/property_price"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/property_address"/>
+
+            <TextView
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_address"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/ic_location"
+                android:drawableStart="@drawable/ic_location"
+                android:text="@{item.getAddress()}"
+                tools:text="4"
+                android:textColor="@color/md_grey_700"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/property_image"
+                app:layout_constraintBottom_toTopOf="@+id/line1"/>
+
+            <View
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/line1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_300"
+                app:layout_constraintTop_toBottomOf="@+id/property_address"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/property_description" />
+
+            <TextView
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_description"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="@{item.description}"
+                tools:text="Sydney"
+                android:textColor="@color/md_grey_500"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line1"
+                app:layout_constraintBottom_toTopOf="@+id/property_bedrooms"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_bedrooms"
+                android:text="@{String.valueOf(item.bedrooms)}"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/ic_bedroom"
+                tools:text="4"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textColor="@color/md_grey_700"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/property_bathrooms"
+                app:layout_constraintTop_toBottomOf="@+id/property_description"
+                app:layout_constraintBottom_toTopOf="@+id/line2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_bathrooms"
+                android:text="@{String.valueOf(item.bathrooms)}"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/ic_bathroom"
+                tools:text="4"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textColor="@color/md_grey_700"
+                app:layout_constraintLeft_toRightOf="@+id/property_bedrooms"
+                app:layout_constraintRight_toLeftOf="@+id/property_carspots"
+                app:layout_constraintBottom_toBottomOf="@+id/property_bedrooms" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_carspots"
+                android:text="@{String.valueOf(item.carspaces)}"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/ic_carspots"
+                tools:text="4"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textColor="@color/md_grey_700"
+                app:layout_constraintLeft_toRightOf="@+id/property_bathrooms"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/property_bedrooms"/>
+
+            <View
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_300"
+                app:layout_constraintTop_toBottomOf="@+id/property_bedrooms"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/property_owner_avatar" />
+
+            <ImageView
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/property_owner_avatar"
+                app:avatarUrl="@{item.owner.image.medium.url}"
+                android:src="@drawable/ic_person"
+                app:layout_constraintTop_toBottomOf="@+id/line2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_owner_name"
+                android:text='@{item.owner.name.concat(" ").concat(item.owner.lastName)}'
+                tools:text="Name"
+                android:textSize="16sp"
+                android:textColor="@color/md_black_1000"
+                app:layout_constraintLeft_toRightOf="@+id/property_owner_avatar"
+                app:layout_constraintTop_toTopOf="@+id/property_owner_avatar" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.v7.widget.CardView>
+</layout>
